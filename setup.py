@@ -29,7 +29,7 @@ setup(
     author='Matt McCormick',
     author_email='matt.mccormick@kitware.com',
     license='Apache Software License 2.0',
-    url='https://github.com/thewtex/napari-itk-io',
+    url='https://github.com/InsightSoftwareConsortium/napari-itk-io',
     description='File IO with itk for napari',
     long_description=read('README.md'),
     long_description_content_type='text/markdown',

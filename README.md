@@ -1,10 +1,10 @@
 # napari-itk-io
 
-[![License](https://img.shields.io/pypi/l/napari-itk-io.svg?color=green)](https://github.com/thewtex/napari-itk-io/raw/master/LICENSE)
+[![License](https://img.shields.io/pypi/l/napari-itk-io.svg?color=green)](https://github.com/InsightSoftwareConsortium/napari-itk-io/raw/master/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/napari-itk-io.svg?color=green)](https://pypi.org/project/napari-itk-io)
 [![Python Version](https://img.shields.io/pypi/pyversions/napari-itk-io.svg?color=green)](https://python.org)
-[![tests](https://github.com/thewtex/napari-itk-io/workflows/tests/badge.svg)](https://github.com/thewtex/napari-itk-io/actions)
-[![codecov](https://codecov.io/gh/thewtex/napari-itk-io/branch/master/graph/badge.svg)](https://codecov.io/gh/thewtex/napari-itk-io)
+[![tests](https://github.com/InsightSoftwareConsortium/napari-itk-io/workflows/tests/badge.svg)](https://github.com/InsightSoftwareConsortium/napari-itk-io/actions)
+[![codecov](https://codecov.io/gh/InsightSoftwareConsortium/napari-itk-io/branch/master/graph/badge.svg)](https://codecov.io/gh/InsightSoftwareConsortium/napari-itk-io)
 
 File IO with itk for napari
 
@@ -50,7 +50,7 @@ If you encounter any problems, please [file an issue] along with a detailed desc
 [Apache Software License 2.0]: http://www.apache.org/licenses/LICENSE-2.0
 [Mozilla Public License 2.0]: https://www.mozilla.org/media/MPL/2.0/index.txt
 [cookiecutter-napari-plugin]: https://github.com/napari/cookiecutter-napari-plugin
-[file an issue]: https://github.com/thewtex/napari-itk-io/issues
+[file an issue]: https://github.com/InsightSoftwareConsortium/napari-itk-io/issues
 [napari]: https://github.com/napari/napari
 [tox]: https://tox.readthedocs.io/en/latest/
 [pip]: https://pypi.org/project/pip/
