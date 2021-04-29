@@ -31,10 +31,15 @@ You can install `napari-itk-io` via [pip]:
 Contributions are very welcome. Tests can be run with [tox], please ensure
 the coverage at least stays the same before you submit a pull request.
 
+Follow the [itk contributing
+guidelines](https://github.com/InsightSoftwareConsortium/ITK/blob/master/CONTRIBUTING.md)
+and the [itk code of
+conduct](https://github.com/InsightSoftwareConsortium/ITK/blob/master/CODE_OF_CONDUCT.md).
+
 ## License
 
 Distributed under the terms of the [Apache Software License 2.0] license,
-"napari-itk-io" is free and open source software
+"napari-itk-io" is free and open source software.
 
 ## Issues
 
