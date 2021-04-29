@@ -73,6 +73,7 @@ def reader_function(path):
     add_kwargs = {
             'channel_axis': channel_axis,
             'rgb': image_layer.rgb,
+            'metadata': image_layer.metadata,
             }
 
     layer_type = "image"  # optional, default is "image"

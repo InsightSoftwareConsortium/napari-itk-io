@@ -63,6 +63,27 @@ def test_reader_rgb(tmp_path):
     assert layer_data_tuple[1]['channel_axis'] == 2
     assert layer_data_tuple[1]['rgb'] == True
 
+def test_reader(tmp_path):
+    # write some fake data using your supported file format
+    my_test_file = str(tmp_path / "myfile.mha")
+    original_data = np.random.rand(20, 20)
+    image = itk.image_view_from_array(original_data)
+    image['units'] = 'mm'
+    image['flavor'] = 'tasty'
+    itk.imwrite(image, my_test_file)
+
+    # try to read it back in
+    reader = napari_get_reader(my_test_file)
+    assert callable(reader)
+
+    layer_data_list = reader(my_test_file)
+    layer_data_tuple = layer_data_list[0]
+
+    # make sure it's the same as it started
+    np.testing.assert_allclose(original_data, layer_data_tuple[0])
+    assert layer_data_tuple[1]['metadata']['units'] == 'mm'
+    assert layer_data_tuple[1]['metadata']['flavor'] == 'tasty'
+
 def test_get_reader_pass():
     reader = napari_get_reader("fake.file")
     assert reader is None
