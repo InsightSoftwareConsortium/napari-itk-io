@@ -6,7 +6,9 @@
 [![tests](https://github.com/InsightSoftwareConsortium/napari-itk-io/workflows/tests/badge.svg)](https://github.com/InsightSoftwareConsortium/napari-itk-io/actions)
 [![codecov](https://codecov.io/gh/InsightSoftwareConsortium/napari-itk-io/branch/master/graph/badge.svg)](https://codecov.io/gh/InsightSoftwareConsortium/napari-itk-io)
 
-File IO with itk for napari.
+File IO with [itk](https://itk.org) for [napari](https://napari.org).
+
+Image metadata, e.g. the pixel spacing, origin, and metadata tags, are preserved and passed into napari.
 
 Supported image file formats:
 
