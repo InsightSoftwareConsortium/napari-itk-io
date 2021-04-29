@@ -2,6 +2,7 @@
 This module provides itk-based file reading functionality in a reader plugin for napari.
 
 """
+from pathlib import Path
 import numpy as np
 import itk
 from itk_napari_conversion import image_layer_from_image
@@ -28,8 +29,14 @@ def napari_get_reader(path):
         # so we are only going to look at the first file.
         path = path[0]
 
+    path_obj = Path(path)
+    if path_obj.is_dir():
+        files = list(filter(lambda x: x.is_file(), path_obj.iterdir()))
+        image_io = itk.ImageIOFactory.CreateImageIO(str(files[0]), itk.CommonEnums.IOFileMode_ReadMode)
+    else:
+        image_io = itk.ImageIOFactory.CreateImageIO(path, itk.CommonEnums.IOFileMode_ReadMode)
+
     # if we know we cannot read the file, we immediately return None.
-    image_io = itk.ImageIOFactory.CreateImageIO(path, itk.CommonEnums.IOFileMode_ReadMode)
     if not image_io:
         return None
 
@@ -59,8 +66,26 @@ def reader_function(path):
         Both "meta", and "layer_type" are optional. napari will default to
         layer_type=="image" if not provided
     """
-    # handle both a string and a list of strings
-    image = itk.imread(path)
+    if not isinstance(path, list):
+        path_obj = Path(path)
+        if path_obj.is_dir():
+            files = list(filter(lambda x: x.is_file(), path_obj.iterdir()))
+            image_io = itk.ImageIOFactory.CreateImageIO(str(files[0]), itk.CommonEnums.IOFileMode_ReadMode)
+            if isinstance(image_io, itk.GDCMImageIO):
+                # DICOMs are handled specially -- we identify a single series from
+                # all the files in the directory and ensure that they are sorted
+                # spatially
+                # itk.imread assumes a DICOM series if a directory is passed
+                image = itk.imread(path)
+            else:
+                file_strings = [str(f) for f in files]
+                image = itk.imread(file_strings)
+        else:
+            # handle both a string and a list of strings
+            image = itk.imread(path)
+    else:
+        # handle both a string and a list of strings
+        image = itk.imread(path)
 
     image_layer = image_layer_from_image(image)
     components = image.GetNumberOfComponentsPerPixel()

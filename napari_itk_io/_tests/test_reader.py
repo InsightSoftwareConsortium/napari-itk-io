@@ -2,7 +2,6 @@ import numpy as np
 from napari_itk_io import napari_get_reader
 import itk
 
-
 # tmp_path is a pytest fixture
 def test_reader(tmp_path):
     # write some fake data using your supported file format
