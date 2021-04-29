@@ -6,19 +6,7 @@
 [![tests](https://github.com/InsightSoftwareConsortium/napari-itk-io/workflows/tests/badge.svg)](https://github.com/InsightSoftwareConsortium/napari-itk-io/actions)
 [![codecov](https://codecov.io/gh/InsightSoftwareConsortium/napari-itk-io/branch/master/graph/badge.svg)](https://codecov.io/gh/InsightSoftwareConsortium/napari-itk-io)
 
-File IO with itk for napari
-
-----------------------------------
-
-This [napari] plugin was generated with [Cookiecutter] using with [@napari]'s [cookiecutter-napari-plugin] template.
-
-<!--
-Don't miss the full getting started guide to set up your new package:
-https://github.com/napari/cookiecutter-napari-plugin#getting-started
-
-and review the napari docs for plugin developers:
-https://napari.org/docs/plugins/index.html
--->
+File IO with itk for napari.
 
 ## Installation
 
