@@ -75,6 +75,7 @@ def reader_function(path):
             'rgb': image_layer.rgb,
             'metadata': image_layer.metadata,
             'scale': image_layer.scale,
+            'translate': image_layer.translate,
             }
 
     layer_type = "image"  # optional, default is "image"

@@ -104,6 +104,26 @@ def test_reader_scale(tmp_path):
     np.testing.assert_allclose(original_data, layer_data_tuple[0])
     np.testing.assert_allclose(np.array(spacing)[::-1], layer_data_tuple[1]['scale'])
 
+def test_reader_translate(tmp_path):
+    # write some fake data using your supported file format
+    my_test_file = str(tmp_path / "myfile.mha")
+    original_data = np.random.rand(20, 20)
+    image = itk.image_view_from_array(original_data)
+    origin = [3.0, 4.0]
+    image.SetOrigin(origin)
+    itk.imwrite(image, my_test_file)
+
+    # try to read it back in
+    reader = napari_get_reader(my_test_file)
+    assert callable(reader)
+
+    layer_data_list = reader(my_test_file)
+    layer_data_tuple = layer_data_list[0]
+
+    # make sure it's the same as it started
+    np.testing.assert_allclose(original_data, layer_data_tuple[0])
+    np.testing.assert_allclose(np.array(origin)[::-1], layer_data_tuple[1]['translate'])
+
 def test_get_reader_pass():
     reader = napari_get_reader("fake.file")
     assert reader is None
