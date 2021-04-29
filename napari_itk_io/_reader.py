@@ -1,21 +1,15 @@
 """
-This module is an example of a barebones numpy reader plugin for napari.
+This module provides itk-based file reading functionality in a reader plugin for napari.
 
-It implements the ``napari_get_reader`` hook specification, (to create
-a reader plugin) but your plugin may choose to implement any of the hook
-specifications offered by napari.
-see: https://napari.org/docs/dev/plugins/hook_specifications.html
-
-Replace code below accordingly.  For complete documentation see:
-https://napari.org/docs/dev/plugins/for_plugin_developers.html
 """
 import numpy as np
+import itk
+from itk_napari_conversion import image_layer_from_image
 from napari_plugin_engine import napari_hook_implementation
-
 
 @napari_hook_implementation
 def napari_get_reader(path):
-    """A basic implementation of the napari_get_reader hook specification.
+    """An itk implementation of the napari_get_reader hook specification.
 
     Parameters
     ----------
@@ -35,7 +29,8 @@ def napari_get_reader(path):
         path = path[0]
 
     # if we know we cannot read the file, we immediately return None.
-    if not path.endswith(".npy"):
+    image_io = itk.ImageIOFactory.CreateImageIO(path, itk.CommonEnums.IOFileMode_ReadMode)
+    if not image_io:
         return None
 
     # otherwise we return the *function* that can read ``path``.
@@ -65,14 +60,19 @@ def reader_function(path):
         layer_type=="image" if not provided
     """
     # handle both a string and a list of strings
-    paths = [path] if isinstance(path, str) else path
-    # load all files into array
-    arrays = [np.load(_path) for _path in paths]
-    # stack arrays into single array
-    data = np.squeeze(np.stack(arrays))
+    image = itk.imread(path)
+
+    image_layer = image_layer_from_image(image)
+    components = image.GetNumberOfComponentsPerPixel()
+    if components == 1:
+        channel_axis = None
+    else:
+        channel_axis = image_layer.data.ndim - 1
 
     # optional kwargs for the corresponding viewer.add_* method
-    add_kwargs = {}
+    add_kwargs = {
+            'channel_axis': channel_axis
+            }
 
     layer_type = "image"  # optional, default is "image"
-    return [(data, add_kwargs, layer_type)]
+    return [(image_layer.data, add_kwargs, layer_type)]
