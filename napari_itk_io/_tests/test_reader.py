@@ -41,7 +41,27 @@ def test_reader_channel_axis(tmp_path):
     # make sure it's the same as it started
     np.testing.assert_allclose(original_data, layer_data_tuple[0])
     assert layer_data_tuple[1]['channel_axis'] == 2
+    assert layer_data_tuple[1]['rgb'] == False
 
+def test_reader_rgb(tmp_path):
+    my_test_file = str(tmp_path / "myfile.png")
+    original_data = np.random.randint(256, size=(20, 20, 3), dtype=np.uint8)
+    ImageType = itk.Image[itk.RGBPixel[itk.UC], 2]
+    image = itk.image_view_from_array(original_data, ttype=ImageType)
+    itk.imwrite(image, my_test_file)
+
+    # try to read it back in
+    reader = napari_get_reader(my_test_file)
+    assert callable(reader)
+
+    # make sure we're delivering the right format
+    layer_data_list = reader(my_test_file)
+    layer_data_tuple = layer_data_list[0]
+
+    # make sure it's the same as it started
+    np.testing.assert_allclose(original_data, layer_data_tuple[0])
+    assert layer_data_tuple[1]['channel_axis'] == 2
+    assert layer_data_tuple[1]['rgb'] == True
 
 def test_get_reader_pass():
     reader = napari_get_reader("fake.file")
