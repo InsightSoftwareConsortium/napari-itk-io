@@ -74,6 +74,7 @@ def reader_function(path):
             'channel_axis': channel_axis,
             'rgb': image_layer.rgb,
             'metadata': image_layer.metadata,
+            'scale': image_layer.scale,
             }
 
     layer_type = "image"  # optional, default is "image"
