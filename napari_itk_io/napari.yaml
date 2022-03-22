@@ -1,0 +1,25 @@
+name: napari-itk-io
+display_name: napari-itk-io
+schema_version: 0.1.0
+contributions:
+  commands:
+  - id: napari-itk-io.get_reader
+    title: Read files using the ITK IO
+    python_name: napari_itk_io._reader:napari_get_reader
+  - id: napari-itk-io.write_multiple
+    title: Save multiple layers with the ITK IO (not implemented yet)
+    python_name: napari_itk_io._writer:write_multiple
+  - id: napari-itk-io.write_single
+    title: Save single layer with the ITK IO (not implemented yet)
+    python_name: napari_itk_io._writer:write_single
+  readers:
+  - command: napari-itk-io.get_reader
+    filename_patterns: ['*']
+    accepts_directories: true
+  writers:
+  - command: napari-itk-io.write_multiple
+    layer_types: ['image*', 'labels*']
+    filename_extensions: ['.nii']
+  - command: napari-itk-io.write_single
+    layer_types: [ 'image*', 'labels*' ]
+    filename_extensions: ['.nii']

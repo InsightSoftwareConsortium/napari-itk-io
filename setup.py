@@ -52,8 +52,9 @@ setup(
         'License :: OSI Approved :: Apache Software License',
     ],
     entry_points={
-        'napari.plugin': [
-            'napari-itk-io = napari_itk_io',
+        "napari.manifest": [
+            "napari-itk-io = napari_itk_io:napari.yaml",
         ],
     },
+    package_data={"napari_itk_io": ["napari.yaml"]},
 )
