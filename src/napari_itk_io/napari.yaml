@@ -1,0 +1,24 @@
+name: napari-itk-io
+display_name: napari-itk-io
+contributions:
+  commands:
+    - id: napari-itk-io.get_reader
+      python_name: napari_itk_io._reader:napari_get_reader
+      title: Open data with napari-itk-io
+    - id: napari-itk-io.write_multiple
+      python_name: napari_itk_io._writer:write_multiple
+      title: Save multi-layer data with napari-itk-io
+    - id: napari-itk-io.write_single
+      python_name: napari_itk_io._writer:write_single
+      title: Save layer data with napari-itk-io
+  readers:
+    - command: napari-itk-io.get_reader
+      accepts_directories: true
+      filename_patterns: ['*']
+  writers:
+    - command: napari-itk-io.write_multiple
+      layer_types: ['image*','labels*']
+      filename_extensions: []
+    - command: napari-itk-io.write_single
+      layer_types: ['image','labels']
+      filename_extensions: ['.nii']

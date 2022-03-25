@@ -3,12 +3,10 @@ This module provides itk-based file reading functionality in a reader plugin for
 
 """
 from pathlib import Path
-import numpy as np
 import itk
 from itk_napari_conversion import image_layer_from_image
-from napari_plugin_engine import napari_hook_implementation
 
-@napari_hook_implementation
+
 def napari_get_reader(path):
     """An itk implementation of the napari_get_reader hook specification.
 
