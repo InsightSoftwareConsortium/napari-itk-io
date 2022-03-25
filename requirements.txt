@@ -1,4 +1,0 @@
-napari-plugin-engine>=0.1.4
-itk-io>=5.2.0
-itk-napari-conversion
-numpy
