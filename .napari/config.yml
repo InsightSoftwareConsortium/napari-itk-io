@@ -1,0 +1,9 @@
+project_urls:
+    Project Site: https://itk.org/
+    Bug Tracker: https://github.com/InsightSoftwareConsortium/napari-itk-io/issues
+    Source Code: https://github.com/InsightSoftwareConsortium/napari-itk-io
+    User Support: https://discourse.itk.org/
+authors:
+  - name: Matt McCormick
+    orcid: 0000-0001-9475-3756
+  - name: Viktor van der Valk
